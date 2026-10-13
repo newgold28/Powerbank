@@ -1,26 +1,103 @@
 @import "tailwindcss";
 
+@theme {
+  --color-ivory: #fffcf7;
+  --color-paper: #fbf6ee;
+  --color-lavender: #e7ddf8;
+  --color-lavender-deep: #d9c9f1;
+  --color-deep: #48364f;
+  --color-deep-soft: #6b5570;
+  --color-bronze: #b8794f;
+  --color-bronze-dark: #9b5a2e;
+  --color-charcoal: #29252b;
+  --color-charcoal-soft: #3a353c;
+
+  --font-serif: var(--font-cormorant), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  --shadow-soft: 0 20px 50px -24px rgb(72 54 79 / 0.35);
+  --shadow-card: 0 18px 40px -28px rgb(41 37 43 / 0.4);
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fffcf7;
+  --foreground: #29252b;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  border-color: rgb(184 121 79 / 0.18);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background-color: rgb(184 121 79 / 0.22);
+  color: #29252b;
+}
+
+/* Bronze hairline divider */
+.rule-bronze {
+  @apply inline-block h-px w-16 bg-bronze/70 align-middle;
+}
+
+/* Fade-up reveal (JS adds .is-visible; motion-safe only) */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Accessible focus styles */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid #9b5a2e;
+  outline-offset: 2px;
+}
+
+/* Subtle texture for dark sections */
+.bg-charcoal {
+  background-color: #29252b;
+  background-image:
+    radial-gradient(120% 90% at 50% 0%, rgb(184 121 79 / 0.08), transparent 60%),
+    radial-gradient(80% 70% at 90% 100%, rgb(231 221 248 / 0.06), transparent 55%);
 }

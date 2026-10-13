@@ -1,0 +1,30 @@
+export interface DbEnquiry {
+  id: string;
+  created_at: string;
+  updated_at: string | null;
+  status: string;
+  event_type: string | null;
+  event_type_other: string | null;
+  services: string[];
+  event_date: string | null;
+  flexible_date: boolean;
+  start_time: string | null;
+  end_time: string | null;
+  venue: string | null;
+  guest_count: string | null;
+  event_city: string | null;
+  indoor_outdoor: string | null;
+  full_name: string;
+  email: string;
+  phone: string;
+  contact_method: string | null;
+  budget_gbp: number | null;
+  theme_style: string | null;
+  additional_requests: string | null;
+  dietary_requirements: string | null;
+  reference_images: { path?: string; name?: string }[];
+  notes: string | null;
+  quote_amount: number | null;
+  deposit_status: string | null;
+  deposit_amount: number | null;
+}
